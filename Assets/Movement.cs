@@ -22,22 +22,7 @@ public class Movement : MonoBehaviour {
     }
 
     void Update () {
-        yawAngle += Time.deltaTime;
-
-        Matrix4x4 rotMatrix = new Matrix4x4();
-        rotMatrix.SetColumn(0, new Vector3(Mathf.Cos(yawAngle), 0, -Mathf.Sin(yawAngle)));
-        rotMatrix.SetColumn(1, new Vector3(0, 1, 0));
-        rotMatrix.SetColumn(2, new Vector3(Mathf.Sin(yawAngle), 0, Mathf.Cos(yawAngle)));
-        rotMatrix.SetColumn(3, Vector3.zero);
-
-        for (int i = 0; i < TransformedVertices.Length; i++)
-        {
-            TransformedVertices[i] = rotMatrix * ModelSpaceVertices[i];
-        }
-
-        MF.mesh.vertices = TransformedVertices;
-
-
+       
         Plane plane = new Plane(Vector3.up, transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float point = 0f;
@@ -49,5 +34,26 @@ public class Movement : MonoBehaviour {
 
 
         transform.position = VectorMaths.Add(transform.position, Direction / 2);
+
+
+        //angle
+        //use of Z instead of y as it is top down
+        Vector2 Direction2D = new Vector2(Direction.x, Direction.z);
+        yawAngle = -VectorMaths.VectorToRadians(Direction2D);
+
+        Debug.Log(yawAngle);
+
+       Matrix4x4 rotMatrix = new Matrix4x4();
+        rotMatrix.SetColumn(0, new Vector3(Mathf.Cos(yawAngle), 0, -Mathf.Sin(yawAngle)));
+        rotMatrix.SetColumn(1, new Vector3(0, 1, 0));
+        rotMatrix.SetColumn(2, new Vector3(Mathf.Sin(yawAngle), 0, Mathf.Cos(yawAngle)));
+        rotMatrix.SetColumn(3, Vector3.zero);
+
+        for (int i = 0; i < TransformedVertices.Length; i++)
+        {
+            TransformedVertices[i] = rotMatrix * ModelSpaceVertices[i];
+        }
+
+        MF.mesh.vertices = TransformedVertices;
     }
 }
