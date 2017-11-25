@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MatrixMaths.cs" />
     <Compile Include="Assets\MoveTo.cs" />
     <Compile Include="Assets\Movement.cs" />
     <Compile Include="Assets\VectorMaths.cs" />

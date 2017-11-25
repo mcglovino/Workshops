@@ -12,7 +12,7 @@ public class MoveTo : MonoBehaviour {
 
     public void Start()
     {
-        other = GameObject.Find("Evader");
+        other = GameObject.FindGameObjectWithTag("Evader");
     }
 	void Update () {
         Direction = VectorMaths.Normalized(VectorMaths.Sub(other.transform.position, transform.position));
