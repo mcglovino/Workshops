@@ -31,14 +31,9 @@ public class Movement : MonoBehaviour {
             targetPosition = ray.GetPoint(point);
         }
         Direction = VectorMaths.Normalized(VectorMaths.Sub(targetPosition, transform.position));
-
-
-        transform.position = VectorMaths.Add(transform.position, Direction / 2);
-
-
-        //angle
         //use of Z instead of y as it is top down
         Vector2 Direction2D = new Vector2(Direction.x, Direction.z);
+
         yawAngle = -VectorMaths.VectorToRadians(Direction2D);
 
         Debug.Log(yawAngle);
@@ -55,5 +50,18 @@ public class Movement : MonoBehaviour {
         }
 
         MF.mesh.vertices = TransformedVertices;
+
+        if(Input.GetKey(KeyCode.W))
+        {
+            transform.position = VectorMaths.Add(transform.position, Direction / 2.5f);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.position = VectorMaths.Add(transform.position, -(VectorMaths.CrossProduct(Direction, Vector3.up)) / 2.5f);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.position = VectorMaths.Add(transform.position, (VectorMaths.CrossProduct(Direction, Vector3.up)) / 2.5f);
+        }
     }
 }
