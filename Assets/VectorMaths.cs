@@ -57,8 +57,28 @@ public class VectorMaths {
         return C;
     }
 
+    public static Vector3 EulertoDir(Vector3 A)
+    {
+        Vector3 B = new Vector3();
+        B.x = Mathf.Cos(A.y) * Mathf.Cos(A.x);
+        B.y = Mathf.Sin(A.x);
+        B.z = Mathf.Cos(A.x) * Mathf.Sin(A.y);
+        return B;
+    }
+
+    public static Vector3 CrossProduct(Vector3 A, Vector3 B)
+    {
+        Vector3 C = new Vector3();
+
+        C.x = A.y * B.z - A.z * B.y;
+        C.y = A.z * B.x - A.x * B.z;
+        C.z = A.x * B.y - A.y * B.x;
+
+        return C;
+    }
 
 
+   
     //Vector2
     public static Vector2 Add(Vector2 A, Vector2 B)
     {
@@ -110,5 +130,21 @@ public class VectorMaths {
         float C = A.x * B.x + A.y * B.y;
 
         return C;
+    }
+
+    public static float VectorToRadians(Vector2 A)
+    {
+        float B = 0.0f;
+
+        B = Mathf.Atan(A.y/ A.x);
+
+        return B;
+    }
+
+    public static Vector2 RadiansToVector(float A)
+    {
+        Vector2 B = new Vector2(Mathf.Cos(A), Mathf.Sin(A));
+
+        return B;
     }
 }

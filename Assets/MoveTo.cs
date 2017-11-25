@@ -6,18 +6,22 @@ public class MoveTo : MonoBehaviour {
 
     GameObject other;
     float theDot;
+    Vector3 Direction;
+
+    Vector3 targetPosition;
 
     public void Start()
     {
         other = GameObject.Find("Evader");
     }
 	void Update () {
-        Vector3 Direction = VectorMaths.Normalized(VectorMaths.Sub(other.transform.position, transform.position));
-        theDot = VectorMaths.Dot(Direction, other.GetComponent<Movement>().Direction);
+        Direction = VectorMaths.Normalized(VectorMaths.Sub(other.transform.position, transform.position));
 
-        if (theDot > 0.2f)
-        {
-            transform.position = VectorMaths.Add(transform.position, Direction/3 );
-        }
+        //theDot = VectorMaths.Dot(Direction, other.GetComponent<Movement>().Direction);
+
+        //if (theDot > 0.2f)
+        //{
+        transform.position = VectorMaths.Add(transform.position, Direction/3 );
+        //}
     }
 }
