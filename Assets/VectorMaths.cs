@@ -77,6 +77,14 @@ public class VectorMaths {
         return C;
     }
 
+    public static Vector3 Lerp(Vector3 A, Vector3 B)
+    {
+        Vector3 D;
+        float C = 0.25f;
+        D = A * (1 - C) + B * C;
+        return D;
+    }
+
 
    
     //Vector2
