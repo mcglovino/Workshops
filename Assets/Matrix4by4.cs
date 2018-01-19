@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MatrixMaths {
-
-
-
-}
-
 public class Matrix4by4
 {
     public Matrix4by4(Vector4 column1, Vector4 column2, Vector4 column3, Vector4 column4)
@@ -113,4 +107,40 @@ public class Matrix4by4
         return result;
     }
 
+    public Vector4 GetRow(int row, Matrix4by4 matrix)
+    {
+        Vector4 rv;
+
+        rv.x = matrix.values[row, 0];
+        rv.y = matrix.values[row, 1];
+        rv.z = matrix.values[row, 2];
+        rv.w = matrix.values[row, 3];
+
+        return rv;
+    }
+
+    public Matrix4by4 TranlateInverse(Matrix4by4 A)
+    {
+        A.values[0, 3] = -values[0, 3];
+        A.values[1, 3] = -values[1, 3];
+        A.values[2, 3] = -values[2, 3];
+
+        return A;
+    }
+
+    public Matrix4by4 RotateInverse(Matrix4by4 A)
+    {
+        A = new Matrix4by4(GetRow(0, A), GetRow(1, A), GetRow(2, A), GetRow(3, A));
+
+        return A;
+    }
+
+    public Matrix4by4 ScaleInverse(Matrix4by4 A)
+    {
+        A.values[0, 0] = 1/values[0, 0];
+        A.values[1, 1] = 1/values[1, 1];
+        A.values[2, 2] = 1/values[2, 2];
+
+        return A;
+    }
 }

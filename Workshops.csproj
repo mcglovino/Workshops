@@ -221,7 +221,7 @@
   <ItemGroup>
     <Compile Include="Assets\CameraLookAt.cs" />
     <Compile Include="Assets\LerpTo.cs" />
-    <Compile Include="Assets\MatrixMaths.cs" />
+    <Compile Include="Assets\Matrix4by4.cs" />
     <Compile Include="Assets\Movement.cs" />
     <Compile Include="Assets\MoveTo.cs" />
     <Compile Include="Assets\TRS.cs" />
