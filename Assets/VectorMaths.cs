@@ -44,6 +44,8 @@ public class VectorMaths {
     public static Vector3 Normalized(Vector3 A)
     {
         Vector3 B = Divisor(A,Len(A));
+        Debug.Log("Normalized : ");
+        Debug.Log(B);
         return B;
     }
 
@@ -53,7 +55,8 @@ public class VectorMaths {
         B = Normalized(B);
 
         float C = A.x * B.x + A.y * B.y + A.z * B.z;
-
+        Debug.Log("Dot Product : ");
+        Debug.Log(C);
         return C;
     }
 
@@ -74,6 +77,8 @@ public class VectorMaths {
         C.y = A.z * B.x - A.x * B.z;
         C.z = A.x * B.y - A.y * B.x;
 
+        Debug.Log("Cross Product : ");
+        Debug.Log(C);
         return C;
     }
 
@@ -83,6 +88,16 @@ public class VectorMaths {
         float C = 0.25f;
         D = A * (1 - C) + B * C;
         return D;
+    }
+
+    public static Vector3 RotateVertexAroundAxis(float Angle, Vector3 Axis, Vector3 Vertex)
+    {
+        Vector3 rv = (Vertex * Mathf.Cos(Angle)) +
+            Dot(Vertex, Axis) * Axis * (1-Mathf.Cos(Angle)) +
+            CrossProduct(Axis,Vertex) * Mathf.Sin(Angle);
+        Debug.Log("Rotated vertex : ");
+        Debug.Log(rv);
+        return rv;
     }
 
 
