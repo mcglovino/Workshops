@@ -20,6 +20,7 @@ public class VectorMaths {
     public static float Len(Vector3 A)
     {
         float B = Mathf.Sqrt((A.x * A.x) + (A.y * A.y) + (A.z*A.z));
+        Debug.Log("Length : " + B);
         return B;
     }
 
@@ -44,8 +45,7 @@ public class VectorMaths {
     public static Vector3 Normalized(Vector3 A)
     {
         Vector3 B = Divisor(A,Len(A));
-        Debug.Log("Normalized : ");
-        Debug.Log(B);
+        Debug.Log("Normalized : " + B.x + ", " + B.y + ", " + B.z);
         return B;
     }
 
@@ -55,8 +55,7 @@ public class VectorMaths {
         B = Normalized(B);
 
         float C = A.x * B.x + A.y * B.y + A.z * B.z;
-        Debug.Log("Dot Product : ");
-        Debug.Log(C);
+        Debug.Log("Dot Product : " + C);
         return C;
     }
 
@@ -77,8 +76,7 @@ public class VectorMaths {
         C.y = A.z * B.x - A.x * B.z;
         C.z = A.x * B.y - A.y * B.x;
 
-        Debug.Log("Cross Product : ");
-        Debug.Log(C);
+        Debug.Log("Cross Product : " + C.x + ", " + C.y + ", " + C.z);
         return C;
     }
 
@@ -95,9 +93,17 @@ public class VectorMaths {
         Vector3 rv = (Vertex * Mathf.Cos(Angle)) +
             Dot(Vertex, Axis) * Axis * (1-Mathf.Cos(Angle)) +
             CrossProduct(Axis,Vertex) * Mathf.Sin(Angle);
-        Debug.Log("Rotated vertex : ");
-        Debug.Log(rv);
+        Debug.Log("Rotated vertex : " + rv);
         return rv;
+    }
+
+    public static Vector3 RotateByQuat(Vector3 A, Quat B)
+    {
+        Quat C = new Quat(0, A.x, A.y, A.z);
+        Quat newC = B * C * Quat.Inverse(B);
+        Vector3 D = new Vector3(newC.x, newC.y, newC.z);
+        Debug.Log("Rotated by Quat: " + D.x + ", " + D.y + ", " + D.z);
+        return D;
     }
 
 
@@ -118,6 +124,7 @@ public class VectorMaths {
     public static float Len(Vector2 A)
     {
         float B = Mathf.Sqrt((A.x * A.x) + (A.y * A.y));
+        Debug.Log("Length : " + B);
         return B;
     }
 
@@ -142,6 +149,7 @@ public class VectorMaths {
     public static Vector2 Normalized(Vector2 A)
     {
         Vector2 B = Divisor(A, Len(A));
+        Debug.Log("Normalized : (" + B.x + ", " + B.y + ")");
         return B;
     }
 
@@ -151,7 +159,7 @@ public class VectorMaths {
         B = Normalized(B);
 
         float C = A.x * B.x + A.y * B.y;
-
+        Debug.Log("Dot Product : " + C);
         return C;
     }
 
