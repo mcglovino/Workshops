@@ -99,15 +99,14 @@ public class VectorMaths {
 
     public static Vector3 RotateByQuat(Vector3 A, Quat B)
     {
-        Quat C = new Quat(0, A.x, A.y, A.z);
-        Quat newC = B * C * Quat.Inverse(B);
-        Vector3 D = new Vector3(newC.x, newC.y, newC.z);
-        Debug.Log("Rotated by Quat: " + D.x + ", " + D.y + ", " + D.z);
+        Quat C = new Quat(A);
+        Quat newC = B * C * B.Inverse();
+        Vector3 D = newC.GetAxis();
         return D;
     }
 
 
-   
+
     //Vector2
     public static Vector2 Add(Vector2 A, Vector2 B)
     {
